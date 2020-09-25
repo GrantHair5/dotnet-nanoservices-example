@@ -10,7 +10,7 @@ namespace Nanoservices.Example.Api.Services.Implementation
     {
         public string Retrieve(int id)
         {
-            using var db = new LiteDatabase(@"C:\Temp\MyData.db");
+            using var db = new LiteDatabase(@"./Countries.db");
             var col = db.GetCollection<Country>("countries");
             var country = col.Find(x => x.Id == id);
             var response = country != null ? JsonSerializer.Serialize(country) : "No country found";
@@ -19,7 +19,7 @@ namespace Nanoservices.Example.Api.Services.Implementation
 
         public IEnumerable<Country> RetrieveAll()
         {
-            using var db = new LiteDatabase(@"C:\Temp\MyData.db");
+            using var db = new LiteDatabase(@"./Countries.db");
             var col = db.GetCollection<Country>("countries");
 
             var countries = col.FindAll();

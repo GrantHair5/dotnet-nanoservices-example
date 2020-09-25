@@ -13,7 +13,7 @@ namespace Nanoservices.Example.Api.Data
     {
         public CountriesData()
         {
-            using var db = new LiteDatabase(@"C:\Temp\Countries.db");
+            using var db = new LiteDatabase(@"./Countries.db");
             var col = db.GetCollection<Country>("countries");
 
             if (col.Count() > 0)

@@ -6,7 +6,7 @@ namespace Nanoservices.Example.Api.Services.Implementation
     {
         public void Add<T>(T objectToAdd)
         {
-            using var db = new LiteDatabase(@"C:\Temp\Countries.db");
+            using var db = new LiteDatabase(@"./Countries.db");
             var col = db.GetCollection<T>("countries");
             col.Insert(objectToAdd);
         }
