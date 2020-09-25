@@ -30,7 +30,7 @@ namespace Nanoservices.Example.Api
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/countries/{id:int}", async context =>
+                endpoints.MapGet("/api/countries/{id:int}", async context =>
                 {
                     var id = int.Parse((string)context.Request.RouteValues["id"]);
                     var retrievalService = context.Request.HttpContext.RequestServices.GetRequiredService<IRetrievalService>();
@@ -38,7 +38,7 @@ namespace Nanoservices.Example.Api
                     await context.Response.WriteAsync(response);
                 });
 
-                endpoints.MapGet("/allcountries", async context =>
+                endpoints.MapGet("/api/countries", async context =>
                 {
                     var retrievalService = context.Request.HttpContext.RequestServices.GetRequiredService<IRetrievalService>();
                     var response = retrievalService.RetrieveAll();
