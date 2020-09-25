@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Nanoservices.Example.Api.Data;
+﻿using Nanoservices.Example.Api.Data;
 
 namespace Nanoservices.Example.Api.Services
 {
