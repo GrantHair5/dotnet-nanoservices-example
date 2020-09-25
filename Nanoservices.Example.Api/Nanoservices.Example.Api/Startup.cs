@@ -38,7 +38,7 @@ namespace Nanoservices.Example.Api
                     await context.Response.WriteAsync(response);
                 });
 
-                endpoints.MapGet("/countries", async context =>
+                endpoints.MapGet("/allcountries", async context =>
                 {
                     var retrievalService = context.Request.HttpContext.RequestServices.GetRequiredService<IRetrievalService>();
                     var response = retrievalService.RetrieveAll();
