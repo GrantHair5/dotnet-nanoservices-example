@@ -7,6 +7,6 @@ namespace Nanoservices.Example.Api.Services
     {
         string Retrieve(int id);
 
-        CountriesData RetrieveAll();
+        IEnumerable<Country> RetrieveAll();
     }
 }

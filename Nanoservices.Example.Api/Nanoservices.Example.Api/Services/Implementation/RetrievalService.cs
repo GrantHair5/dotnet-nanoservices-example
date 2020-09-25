@@ -1,23 +1,29 @@
-﻿using System.Linq;
-using System.Text.Json;
+﻿using System.Collections.Generic;
+using System.Linq;
+using LiteDB;
 using Nanoservices.Example.Api.Data;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace Nanoservices.Example.Api.Services.Implementation
 {
     public class RetrievalService : IRetrievalService
     {
-        private readonly CountriesData _countries = new CountriesData();
-
         public string Retrieve(int id)
         {
-            var country = _countries.Countries.FirstOrDefault(x => x.Id == id);
+            using var db = new LiteDatabase(@"C:\Temp\MyData.db");
+            var col = db.GetCollection<Country>("countries");
+            var country = col.Find(x => x.Id == id);
             var response = country != null ? JsonSerializer.Serialize(country) : "No country found";
             return response;
         }
 
-        public CountriesData RetrieveAll()
+        public IEnumerable<Country> RetrieveAll()
         {
-            return _countries ?? new CountriesData();
+            using var db = new LiteDatabase(@"C:\Temp\MyData.db");
+            var col = db.GetCollection<Country>("countries");
+
+            var countries = col.FindAll();
+            return countries;
         }
     }
 }
